@@ -1,5 +1,6 @@
 ﻿beautifulsoup4==4.12.3
 flask==2.3.3
+gunicorn
 requests
 google-generativeai
 
