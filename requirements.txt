@@ -1,7 +1,10 @@
-﻿beautifulsoup4==4.12.3
+beautifulsoup4==4.12.3
 flask==2.3.3
-gunicorn
 requests
+gunicorn
 google-generativeai
 lxml
-
+langchain
+langchain-community
+langchain-google-genai
+pypdf
