@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 import Practo_Scrap
 import GeminiAI
 from tempfile import NamedTemporaryFile
@@ -77,7 +77,7 @@ def summariser():
                 {"input_documents": pages[1:]}, return_only_outputs=True
             )
 
-            return answer['output_text']
+            return jsonify(answer['output_text'])
 
         else:
 
