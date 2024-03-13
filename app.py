@@ -60,11 +60,11 @@ def summariser():
             template = '''Analyse and summarize the given context which is a medical report, in simple and easy to understand language, and generate medical insights/advices from it that the patient should follow:\n\n
             Context:\n{context}\n\n
             
-            - Summary
-            - Insights
             
-            'Label': 'Value'
-            In JSON format
+             "Summary" : a paragraph for summary,
+             "Insights" : a paragraph for insights
+            
+            Output should be exactly in the above JSON format
             
             Answer:
             '''
