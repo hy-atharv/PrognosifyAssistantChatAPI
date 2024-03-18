@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from langchain.chains import LLMChain
 import Practo_Scrap
 import GeminiAI
 from tempfile import NamedTemporaryFile
@@ -82,6 +83,40 @@ def summariser():
         else:
 
             return "No File Received at Backend"
+
+
+@app.route("/LifestyleAI", methods=['GET', 'POST'])
+def lifestyle():
+    if request.method == 'POST':
+        data = request.get_json()
+        bmi = data.get("bmi", "")
+        avg_sleep = data.get("sleep", "")
+        steps = data.get("steps", "")
+        cal = data.get("calories", "")
+        gender = data.get("gender", "")
+        age = data.get("age", "")
+
+        context = "Age: " + age + "\nGender: " + gender + "\nBody Measure Index: " + bmi + "\nCalories(kcal) burnt by walking in last week: " + cal + "\nTotal steps walked in last week: " + steps + "\nAverage sleep duration in last week: " + avg_sleep
+
+        template = '''Given below is the Lifestyle Data of a user in the last week. Analyze it thoroughly and medically and calculate an appropriate Lifestyle Score out of 100 based on the data given, give valuable health insights from this data and advise some personalized steps for this user to follow daily to live a better Lifestyle:\n\n
+        {context}\n\n
+        
+        "Lifestyle_Score" : a numerical score out of 100,
+        "Health_Insights" : a paragraph for health insights,
+        "Steps" : only a paragraph for personalized steps to follow
+        
+        Output should be exactly in the above JSON format
+            
+        Answer:
+        '''
+
+        prompt_template = PromptTemplate(input_variables=["context"], template=template)
+        chain = LLMChain(llm=model, prompt=prompt_template)
+        #stuff_chain = load_qa_chain(model, chain_type="stuff", prompt=prompt_template)
+
+        answer = chain.run(context)
+
+        return jsonify(answer)
 
 
 
