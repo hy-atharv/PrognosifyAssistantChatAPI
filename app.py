@@ -103,7 +103,7 @@ def lifestyle():
         
         "Lifestyle_Score" : a numerical score out of 100,
         "Health_Insights" : a paragraph for health insights,
-        "Steps" : only a paragraph for personalized steps to follow
+        "Steps" : a paragraph for personalized steps
         
         Output should be exactly in the above JSON format
             
