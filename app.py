@@ -10,7 +10,7 @@ from langchain.chains.question_answering import load_qa_chain
 
 app = Flask(__name__)
 
-GOOGLE_API_KEY = 'AIzaSyBKumofJExXh_kyOYCn_HSL43Qgv4QVr-w'
+GOOGLE_API_KEY = 'AIzaSyDjocOHAU7Z3uY1K8XtPU6mMp6m5GisRX0'
 
 model = ChatGoogleGenerativeAI(model="gemini-pro",
                                temperature=0.3, google_api_key=GOOGLE_API_KEY)
